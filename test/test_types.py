@@ -1,16 +1,9 @@
 import pytest
 
-from n5a import N5AType, N5AValue, N5ACollection, make_type
+from n5a import N5AType, make_type
 
-def get_pos3d_definition():
-    # This should not fail.
-    LongInt = N5AType(name='longint', cpptype='int32_t', pytype=int)
+from .test_definitions import get_pos3d_definition
 
-    x = N5AValue(name='x', type=LongInt)
-    y = N5AValue(name='y', type=LongInt)
-    z = N5AValue(name='z', type=LongInt)
-
-    return N5ACollection(name='Pos3D', members=[x, y, z])
 
 def test_define_incomplete_type():
     # This should fail.

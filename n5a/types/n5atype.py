@@ -9,4 +9,6 @@ def make_type(collection):
     members = []
     for m in collection.members:
         members.append(m.name)
-    return namedtuple(collection.name, members)
+    r = namedtuple(collection.name, members)
+    r.__is_n5a_type__ = True
+    return r
