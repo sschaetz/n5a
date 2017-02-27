@@ -1,15 +1,35 @@
 language: python
+sudo: required
+dist: trusty
+osx_image: xcode8.2
 python:
   - "2.7"
   - "3.4"
+before_install:
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get -qq update; fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
 install:
-  - "pip install coveralls"
   - "pip install -e .[test]"
+  - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
+      then sudo apt-get -qq install
+        cmake
+        libboost-chrono-dev
+        libboost-date-time-dev
+        libboost-filesystem-dev
+        libboost-system-dev
+        libboost-thread-dev
+        libboost-program-options-dev
+        libboost-test-dev
+        libboost-regex-dev
+        g++;
+      fi
+  - if [[ "$TRAVIS_OS_NAME" == "osx" ]];
+      then brew install
+        cmake
+        boost;
+      fi
+
 script: 
   - py.test
-  - coverage run --source=pyskel -m py.test
-after_success:
-  - coveralls
-sudo: false
 notifications:
   email: false
