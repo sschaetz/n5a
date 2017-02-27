@@ -1,3 +1,7 @@
+# Avoid checking in generated files.
+test/test_cpp/generated/*.hpp
+
+
 # Created by https://www.gitignore.io/api/python,c++,vim,emacs,cmake,pycharm
 
 ### C++ ###

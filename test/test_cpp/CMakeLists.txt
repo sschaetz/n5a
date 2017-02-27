@@ -24,7 +24,7 @@ ELSE()
         ADD_COMPILE_OPTIONS(-Werror)
 ENDIF()
 
-INCLUDE_DIRECTORIES("../external/ceral=1.2.2/")
+INCLUDE_DIRECTORIES("../external/cereal-1.2.2/")
 
 ENABLE_TESTING()
 
