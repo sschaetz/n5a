@@ -2,14 +2,17 @@ language: python
 sudo: required
 dist: trusty
 osx_image: xcode8.2
+
 python:
   - "2.7"
   - "3.4"
+
 before_install:
+  - echo "$TRAVIS_OS_NAME"
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then sudo apt-get -qq update; fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then brew update; fi
+
 install:
-  - "pip install -e .[test]"
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]];
       then sudo apt-get -qq install
         cmake
@@ -28,8 +31,14 @@ install:
         cmake
         boost;
       fi
+  - "pip install -e .[test]"
 
 script: 
   - py.test
+  - mkdir -p build && cd build
+  - cmake ../test/test_cpp
+  - make all
+  - ctest
+
 notifications:
   email: false
