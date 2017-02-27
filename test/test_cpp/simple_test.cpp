@@ -1,6 +1,7 @@
-#include <iostream>
+#define BOOST_TEST_MODULE simple_test
+#include <boost/test/unit_test.hpp>
 
-int main(void)
+BOOST_AUTO_TEST_CASE(simple_cpp_test)
 {
-    std::cout << "woooot" << std::endl;
+        BOOST_CHECK(true);
 }
