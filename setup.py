@@ -29,6 +29,6 @@ setup(
     entry_points=
     """
         [console_scripts]
-        n5a=n5a.gen.gen:gen
+        n5a=n5a.cli:cli
     """,
 )
