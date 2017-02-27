@@ -9,7 +9,7 @@ CI:
 
 ## How it works
 
-Define types in C++ like so:
+Define types in Python like so:
 
 ```python
 from n5a import N5AType, N5AValue, N5ACollection, make_type
@@ -23,14 +23,14 @@ z = N5AValue(name='z', n5atype=LongInt)
 Pos3D = N5ACollection(name='Pos3D', members=[x, y, z])
 ```
 
-Work with this in python:
+Work with the type in python:
 
 ```python
 Pos3DType = make_type(Pos3D)
 s = serialize_to_json(dict(root=dict(data=Pos3DType(x=0, y=1, z=2))))
 ```
 
-Work with this in C++ by generating a C++ header file:
+Work with the type in C++ by generating a C++ header file:
 
 ```python
 s = generate(Pos3D)
