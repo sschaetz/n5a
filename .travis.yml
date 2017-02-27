@@ -24,20 +24,22 @@ install:
         libboost-program-options-dev
         libboost-test-dev
         libboost-regex-dev
-        g++;
+        g++
+        ninja-build;
       fi
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]];
       then brew install
         cmake
-        boost;
+        boost
+        ninja;
       fi
   - "pip install -e .[test]"
 
 script: 
   - py.test
   - mkdir -p build && cd build
-  - cmake ../test/test_cpp
-  - make all
+  - cmake -GNinja ../test/test_cpp
+  - ninja
   - ctest
 
 notifications:
